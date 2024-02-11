@@ -1,5 +1,5 @@
 # SFML Roguelike Dungeon:
-  - This is a rogue-like dungeon video game developed using SFML with textures and sound effects made by Nam. There are basic enemies, dungeon floors, spells, weapons, items, and a shop. There is also a save and load feature.
+  - This is a rogue-like dungeon video game developed using SFML with textures and sound effects made by Nam. There are basic enemies, dungeon floors, spells, weapons, items, and a shop. There is also a save and load feature. 
 
 # AUTHOR:
   - Nam Do
