@@ -9,6 +9,7 @@ on:
   push:
     branches: [ "master" ]
   pull_request:
+    types: [opened, synchronize, closed]
     branches: [ "master" ]
 
 env:
@@ -42,3 +43,20 @@ jobs:
       # Add additional options to the MSBuild command line here (like platform or verbosity level).
       # See https://docs.microsoft.com/visualstudio/msbuild/msbuild-command-line-reference
       run: msbuild /m /p:Configuration=${{env.BUILD_CONFIGURATION}} ${{env.SOLUTION_FILE_PATH}}
+  tag_release:
+    needs: [build]
+    if: ${{ github.event.pull_request.merged == true && !contains(github.event.head_commit.message, '#skip') }}
+    runs-on: ubuntu-20.04
+    permissions:
+      contents: write
+    steps:
+    - uses: actions/checkout@v4
+      with:
+        ref: ${{ github.event.pull_request.merge_commit_sha }}
+        fetch-depth: '0'
+    - name: Bump version and push tag
+      uses: anothrNick/github-tag-action@1.67.0
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        WITH_V: true
+        DEFAULT_BUMP: patch
