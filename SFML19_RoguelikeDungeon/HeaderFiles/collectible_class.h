@@ -6,7 +6,7 @@
 *
 */
 
-#ifndef COLLECTIBLE_H
+ifndef COLLECTIBLE_H
 #define COLLECTIBLE_H
 
 #include "..\SFML-2.5.1/include/SFML/Graphics.hpp"
